@@ -1,0 +1,255 @@
+{% extends "base.html" %}
+
+{% block title %}Add New IPL Player{% endblock %}
+
+{% block content %}
+<style>
+    /* General Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Header Styles */
+    header {
+        background-color: rgb(2, 2, 48);
+        color: #fff;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .ipl-logo {
+        height: 50px;
+    }
+
+    nav ul {
+        list-style-type: none;
+        display: flex;
+        gap: 20px;
+    }
+
+    nav ul li {
+        margin: 0;
+    }
+
+    nav ul li a {
+        color: #fff;
+        text-decoration: none;
+        font-size: 18px;
+        padding: 5px 10px;
+        transition: background-color 0.3s;
+    }
+
+    nav ul li a:hover {
+        background-color: #f1c40f;
+        border-radius: 5px;
+    }
+
+    /* Hero Section */
+    .hero {
+        position: relative;
+        height: 550px;
+        width: 100%;
+        overflow: hidden;
+    }
+
+    .slider-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    .slider {
+        display: flex;
+       <!--transition: transform 5s ease-in-out;-->
+    }
+
+    .slider img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .prev,
+    .next {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: rgba(0, 0, 0, 0.5);
+        color: white;
+        border: none;
+        padding: 10px;
+        font-size: 18px;
+        cursor: pointer;
+        border-radius: 50%;
+        z-index: 10;
+    }
+
+    .prev:hover,
+    .next:hover {
+        background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .prev {
+        left: 10px;
+    }
+
+    .next {
+        right: 10px;
+    }
+
+    /* Teams Section */
+    .team-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+        align-items: center;
+        margin: 25px;
+    }
+
+    .team {
+        background-color: #fff;
+        padding: 10px;
+        margin: 10px;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .team-logo {
+        width: 80px;
+        height: 80px;
+    }
+
+    .view-details {
+        background-color: #f1c40f;
+        color: #111;
+        padding: 5px 10px;
+        border: none;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .view-details:hover {
+        background-color: #e67e22;
+        color: yellow;
+    }
+</style>
+
+<section class="hero">
+    <div class="slider-container">
+        <div class="slider">
+            <img src="https://wallpapercave.com/wp/wp4059913.jpg" alt="Image 1">
+
+            <img src="https://www.hindustantimes.com/ht-img/img/2023/04/04/1600x900/PTI04-03-2023-000319B-0_1680592093818_1680592093818_1680592116744_1680592116744.jpg" alt="Image 1">
+            <img src="https://wallpapercave.com/wp/wp4059913.jpg" alt="Image 2">
+            <img src="https://images.assettype.com/thequint/2019-05/728d36fa-cd1d-46c1-84e3-c9e7db878462/VRP_9406.jpg" alt="Image 3">
+            <img src="https://sportscheetah.com/wp-content/uploads/2023/12/IPL-2024_-Chennai-Super-Kings-CSK-Full-Squad-and-Complete-Players-List-After-The-Player-Auction.webp" alt="Image 4">
+        </div>
+        <button class="prev" onclick="moveSlide(-1)">&#10094;</button>
+        <button class="next" onclick="moveSlide(1)">&#10095;</button>
+    </div>
+</section>
+
+<section class="text">
+    <div class="head">
+        <h1>TEAMS</h1>
+    </div>
+    <div class="team-container">
+        <div class="team" id="MI">
+            <img src="static/img/mi l.png" alt="MI Logo" class="team-logo">
+            <p>MI</p>
+            <button class="view-details" onclick="viewTeamDetails('MI')">View Details</button>
+        </div>
+        <div class="team" id="CSK">
+                <img src="static/img/csk1.png" alt="Team 2 Logo" class="team-logo">
+                <p>CSK</p>
+                <button class="view-details" onclick="viewTeamDetails('CSK')">View Details</button>
+            </div>
+            <!-- Add more teams as needed -->
+            <div class="team" id="RCB">
+                <img src="static/img/rcb-logo-new.png" alt="Team 3 Logo" class="team-logo">
+                <p>RCB</p>
+                <button class="view-details" onclick="viewTeamDetails('RCB')">View Details</button>
+            </div>
+            <div class="team" id="KKR">
+                <img src="static/img/kkr.png" alt="Team 2 Logo" class="team-logo">
+                <p>KKR</p>
+                <button class="view-details" onclick="viewTeamDetails('KKR')">View Details</button>
+            </div>
+            <div class="team" id="RR">
+                <img src="static/img/rrr.png" alt="Team 2 Logo" class="team-logo">
+                <p>RR</p>
+                <button class="view-details" onclick="viewTeamDetails('RR')">View Details</button>
+            </div>
+            <div class="team" id="SRH">
+                <img src="static/img/srh2.png" alt="Team 2 Logo" class="team-logo">
+                <p>SRH</p>
+                <button class="view-details" onclick="viewTeamDetails('SRH')">View Details</button>
+            </div>
+            <div class="team" id="DC">
+                <img src="static/img/dc log.jpeg" alt="Team 2 Logo" class="team-logo">
+                <p>DC</p>
+                <button class="view-details" onclick="viewTeamDetails('DC')">View Details</button>
+            </div>
+            <div class="team" id="PBKS">
+                <img src="static/img/pbks1.png" alt="Team 2 Logo" class="team-logo">
+                <p>PBKS</p>
+                <button class="view-details" onclick="viewTeamDetails('PBKS')">View Details</button>
+            </div>
+            <div class="team" id="GT">
+                <img src="static/img/gt.png" alt="Team 2 Logo" class="team-logo">
+                <p>GT</p>
+                <button class="view-details" onclick="viewTeamDetails('GT')">View Details</button>
+            </div>
+            <div class="team" id="LSG">
+                <img src="static/img/lucknow.png" alt="Team 2 Logo" class="team-logo">
+                <p>LSG</p>
+                <button class="view-details" onclick="viewTeamDetails('LSG')">View Details</button>
+            </div>
+
+
+
+        </div>
+        </section>
+
+<script>
+    let slideIndex = 0;
+
+    function showSlide(index) {
+        const slides = document.querySelectorAll('.slider img');
+        const totalSlides = slides.length;
+        if (index >= totalSlides) {
+            slideIndex = 0;
+        } else if (index < 0) {
+            slideIndex = totalSlides - 1;
+        } else {
+            slideIndex = index;
+        }
+        const offset = -slideIndex * 100;
+        document.querySelector('.slider').style.transform = `translateX(${offset}%)`;
+    }
+
+    function moveSlide(step) {
+        showSlide(slideIndex + step);
+    }
+
+    // Auto slide every 3 seconds
+    setInterval(() => {
+        moveSlide(1);
+    }, 10000);
+
+    function viewTeamDetails(teamId) {
+        alert("Details of " + teamId + " will be available soon!");
+    }
+
+    // Initialize slider
+    showSlide(slideIndex);
+</script>
+
+{% endblock %}

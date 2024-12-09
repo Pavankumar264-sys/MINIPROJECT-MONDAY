@@ -1,0 +1,171 @@
+{% extends "base.html" %}
+
+{% block title %}IPL Matches{% endblock %}
+
+{% block content %}
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #00008b;
+            font-size: 3rem;
+            margin-bottom: 30px;
+        }
+
+        .matches-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .match-card {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 90%;
+            padding: 15px;
+        }
+
+        .match-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+            flex: 1;
+            margin-left: 20px; /* Space between logos and match details */
+        }
+
+        .match-status {
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #28a745; /* Green for completed matches */
+        }
+
+        .match-venue, .match-id, .match-season, .match-city, .match-date, .toss-info, .win-info, .umpires {
+            font-size: 0.9rem;
+            color: #6c757d;
+        }
+
+        .match-details {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+
+        .team {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .team img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 5px;
+        }
+
+        .team-name {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .score {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #000;
+        }
+
+        .match-centre {
+            background-color: #ff4d4d; /* Button red */
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 20px;
+            padding: 5px 10px;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+<!--        .match-centre:hover {-->
+<!--            background-color: #c30d0d;-->
+<!--        }-->
+          .video-glimpse video {
+            width: 600px;
+            height: 250px;
+
+    </style>
+
+    <h1>IPL Matches</h1>
+
+    <div class="matches-container">
+        {% for match in matches %}
+        <div class="match-card">
+            <div class="match-details">
+                <!-- Team 1 Logo and Score -->
+                <div class="team">
+                    <img src="static/img/csk1.png" alt="{{ match.team1 }} Logo">
+                    <div class="team-name">{{ match.team1 }}</div>
+                    <div class="score">{{ match.team1_score }}</div>
+                </div>
+
+                <div class="vs">vs</div>
+
+                <!-- Team 2 Logo and Score -->
+                <div class="team">
+                    <img src="static/img/rcb-logo-new.png" alt="{{ match.team2 }} Logo">
+                    <div class="team-name">{{ match.team2 }}</div>
+                    <div class="score">{{ match.team2_score }}</div>
+                </div>
+            </div>
+
+            <div class="match-info">
+                <div class="match-season">
+                    <strong>Season:</strong> {{ match.season }}
+                </div>
+                <div class="match-city">
+                    <strong>City:</strong> {{ match.city }}
+                </div>
+                <div class="match-date">
+                    <strong>Date:</strong> {{ match.date }}
+                </div>
+                <div class="toss-info">
+                    <strong>Toss Winner:</strong> {{ match.toss_winner }} | <strong>Toss Decision:</strong> {{ match.toss_decision }}
+                </div>
+                <div class="match-status">
+                    <strong>Match Winner:</strong> {{ match.match_winner }} |
+                    <strong>Win By:</strong> {{ match.win_by_runs if match.win_by_runs else match.win_by_wickets }}
+                    {{ 'Runs' if match.win_by_runs else 'Wickets' }}
+                </div>
+                <div class="player-of-the-match">
+                    <strong>Player of the Match:</strong> {{ match.player_of_match }}
+                </div>
+                <div class="umpires">
+                    <strong>Umpires:</strong> {{ match.umpire1 }} and {{ match.umpire2 }}
+                </div>
+            </div>
+
+             <div class="video-glimpse">
+              <video controls autoplay muted>
+    <source src="static/video1/sum of 2 numbers.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+
+            </div>
+
+<!--            <a href="/match/{{ match.id }}" class="match-centre">Match Centre</a>-->
+        </div>
+        {% endfor %}
+    </div>
+{% endblock %}

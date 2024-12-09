@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Team details{% endblock %}
+
+{% block content %}
+<body>
+    <h1>Players of Team: {{ team_name }}</h1>
+
+    {% if players %}
+        <table border="1" style="width: 100%; border-collapse: collapse; text-align: left;">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Matches Played</th>
+                    <th>Runs Scored</th>
+                    <th>Wickets Taken</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for player in players %}
+                    <tr>
+                        <td>{{ player.player_name }}</td>
+                        <td>{{ player.matches_played }}</td>
+                        <td>{{ player.runs_scored }}</td>
+                        <td>{{ player.wickets_taken }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+        <p>No players found for this team.</p>
+    {% endif %}
+
+    <a href="/teams">Back to Teams</a>
+</body>
+{% endblock %}
